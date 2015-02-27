@@ -1,1 +1,12 @@
 c:\git\DriveTools\DriveTools\bin\Debug\DriveTools.exe.config
+c:\git\DriveTools\DriveTools\bin\Debug\DriveTools.exe
+c:\git\DriveTools\DriveTools\bin\Debug\DriveTools.pdb
+c:\git\DriveTools\DriveTools\obj\Debug\MainWindow.baml
+c:\git\DriveTools\DriveTools\obj\Debug\MainWindow.g.cs
+c:\git\DriveTools\DriveTools\obj\Debug\App.g.cs
+c:\git\DriveTools\DriveTools\obj\Debug\DriveTools_MarkupCompile.cache
+c:\git\DriveTools\DriveTools\obj\Debug\DriveTools.g.resources
+c:\git\DriveTools\DriveTools\obj\Debug\DriveTools.Properties.Resources.resources
+c:\git\DriveTools\DriveTools\obj\Debug\DriveTools.csproj.GenerateResource.Cache
+c:\git\DriveTools\DriveTools\obj\Debug\DriveTools.exe
+c:\git\DriveTools\DriveTools\obj\Debug\DriveTools.pdb

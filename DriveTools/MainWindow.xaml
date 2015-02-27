@@ -3,6 +3,39 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Menu VerticalContentAlignment="Center">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Open">
+                    <MenuItem Header="P12" Click="OpenP12_OnClick"/>
+                    <MenuItem Header="JSON" Click="OpenJSON_OnClick"/>
+                </MenuItem>
+                <MenuItem Header="_Recently Opened"
+                          x:Name="RecentlyOpenedMenuItem"
+                          IsEnabled="False">
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="_Close" Click="Close_OnClick"/>
+            </MenuItem>
+            
+            <MenuItem Header="_View">
+
+            </MenuItem>
+
+            <MenuItem Header="_Action">
+                <MenuItem Header="Upload File"/>
+            </MenuItem>
+        </Menu>
+        
+        
+        <ScrollViewer Grid.Row="1"
+                      x:Name="ScrollViewer">
+            
+        </ScrollViewer>
         
     </Grid>
 </Window>
