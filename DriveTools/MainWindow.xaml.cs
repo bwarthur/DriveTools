@@ -23,6 +23,7 @@ namespace DriveTools
         public MainWindow()
         {
             InitializeComponent();
+            Logging.Logging.Start();
         }
 
         private void Close_OnClick(object sender, RoutedEventArgs e)
@@ -33,37 +34,18 @@ namespace DriveTools
         private void OpenJSON_OnClick(object sender, RoutedEventArgs e)
         {
             SelectedCertificateType = CertificateType.JSON;
-            OpenCert("JSON (*.json)|*.json");
+            Certificate = Commands.OpenCommands.OpenJSONCert();
         }
 
         private void OpenP12_OnClick(object sender, RoutedEventArgs e)
         {
             SelectedCertificateType = CertificateType.P12;
-            OpenCert("P12 (*.p12)|*.p12");
+            Certificate = Commands.OpenCommands.OpenP12Cert();
         }
 
-        private static void OpenCert(string fileExtensionFilter)
+        private void OpenCertButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var stream = new MemoryStream();
-            var openFileDialog = new OpenFileDialog
-            {
-                InitialDirectory = @"C:\",
-                Filter = fileExtensionFilter + @"|All Files (*.*)|*.*",
-                FilterIndex = 1,
-                RestoreDirectory = true
-            };
-
-            if (openFileDialog.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
-            try
-            {
-                openFileDialog.OpenFile().CopyTo(stream);
-                Certificate = stream.ToArray();
-            }
-            catch (Exception ex)
-            {
-                    
-                throw;
-            }
+            OpenP12_OnClick(sender, e);
         }
     }
 }

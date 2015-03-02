@@ -10,3 +10,6 @@ c:\git\DriveTools\DriveTools\obj\Debug\DriveTools.Properties.Resources.resources
 c:\git\DriveTools\DriveTools\obj\Debug\DriveTools.csproj.GenerateResource.Cache
 c:\git\DriveTools\DriveTools\obj\Debug\DriveTools.exe
 c:\git\DriveTools\DriveTools\obj\Debug\DriveTools.pdb
+C:\git\DriveTools\DriveTools\obj\Debug\DriveTools.csprojResolveAssemblyReference.cache
+C:\git\DriveTools\DriveTools\obj\Debug\Views\PagedGenericListViewControl.baml
+C:\git\DriveTools\DriveTools\obj\Debug\Views\PagedGenericListViewControl.g.cs
