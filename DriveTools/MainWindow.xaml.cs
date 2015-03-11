@@ -23,7 +23,7 @@ namespace DriveTools
         public MainWindow()
         {
             InitializeComponent();
-            Logging.Logging.Start();
+            EnhancedLogging.Start();
         }
 
         private void Close_OnClick(object sender, RoutedEventArgs e)

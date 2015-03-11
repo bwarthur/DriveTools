@@ -5,6 +5,10 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DriveTools", "DriveTools\DriveTools.csproj", "{3C37F382-E523-4C76-B362-09FC120022C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DriveToolsUnitTest", "DriveToolsUnitTest\DriveToolsUnitTest.csproj", "{C8BA62E6-EF67-46E7-8645-D0D56463C1B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DriveToolsSql", "DriveToolsSql\DriveToolsSql.csproj", "{0FDC44C7-A977-4890-AB58-2E1B3A620B31}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{3C37F382-E523-4C76-B362-09FC120022C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C37F382-E523-4C76-B362-09FC120022C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C37F382-E523-4C76-B362-09FC120022C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8BA62E6-EF67-46E7-8645-D0D56463C1B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8BA62E6-EF67-46E7-8645-D0D56463C1B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8BA62E6-EF67-46E7-8645-D0D56463C1B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8BA62E6-EF67-46E7-8645-D0D56463C1B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FDC44C7-A977-4890-AB58-2E1B3A620B31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FDC44C7-A977-4890-AB58-2E1B3A620B31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FDC44C7-A977-4890-AB58-2E1B3A620B31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FDC44C7-A977-4890-AB58-2E1B3A620B31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

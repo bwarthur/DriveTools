@@ -41,7 +41,7 @@ namespace DriveTools.Commands
             }
             catch (Exception ex)
             {
-                Logging.Logging.Log.Error(ex);
+                EnhancedLogging.Log.Error(ex);
                 return null;
             }
         }
