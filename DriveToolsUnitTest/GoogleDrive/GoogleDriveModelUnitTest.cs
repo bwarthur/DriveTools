@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
 using DriveTools.Model;
 using DriveToolsSql.Model;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v2;
+using Google.Apis.Drive.v2.Data;
 using Google.Apis.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -37,7 +41,7 @@ namespace DriveToolsUnitTest.GoogleDrive
             var model = new GoogleDriveModel(service);
 
             //var files = model.GetAllFiles("not '0B3tlH3Zvt1QAdkpCUExsbDlicmc' in parents");
-            var files = model.GetAllFiles();
+            var files = model.GetAllFiles("modifiedDate > '2015-02-01' and '0B3tlH3Zvt1QAdkpCUExsbDlicmc' in parents");
 
             Console.WriteLine(@"Total File Size: " + files.Select(f => f.QuotaBytesUsed).Sum());
 
@@ -88,7 +92,51 @@ namespace DriveToolsUnitTest.GoogleDrive
 
             var noSqlContext = new NoSqlContext();
             var removeList = noSqlContext.GetRemoveList();
-            removeList.ForEach(r => model.DeleteFile(r));
+            //removeList.ForEach(r => model.DeleteFile(r));
+
+            Parallel.ForEach(removeList, r => model.DeleteFile(r));
+        }
+
+        [TestMethod]
+        public void GetFileAsyncTest()
+        {
+            var service = BuildService();
+            var model = new GoogleDriveModel(service);
+
+            var files = model.GetAllFiles();
+            //files.ForEach(f =>
+            //{
+            //    var file = model.GetFileAsync(f).Result;
+            //    if (file != null)
+            //        System.IO.File.WriteAllBytes(@"E:\FMO-Documents\" + f.Id + "." + f.FileExtension, file);
+            //});
+
+            var filesToResume = new List<File>();
+            var errorFiles = new List<File>();
+
+            Parallel.ForEach(files, f =>
+            {
+                if (System.IO.File.Exists(@"E:\FMO-Documents\" + f.Id + "." + f.FileExtension)) return;
+                var file = model.GetFileAsync(f).Result;
+                if (file != null)
+                    System.IO.File.WriteAllBytes(@"E:\FMO-Documents\" + f.Id + "." + f.FileExtension, file);
+                else
+                    filesToResume.Add(f);
+            });
+
+            var updatedService = BuildService();
+            var updatedModel = new GoogleDriveModel(updatedService);
+
+            Parallel.ForEach(filesToResume, f =>
+            {
+                var file = updatedModel.GetFileAsync(f).Result;
+                if (file != null)
+                    System.IO.File.WriteAllBytes(@"E:\FMO-Documents\" + f.Id + "." + f.FileExtension, file);
+                else
+                    errorFiles.Add(f);
+            });
+
+            Console.WriteLine(@"Files With Errors: " + errorFiles.Count);
         }
 
         private static DriveService BuildService()

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Threading.Tasks;
 using Google.Apis.Drive.v2;
 using Google.Apis.Drive.v2.Data;
 
@@ -93,6 +95,28 @@ namespace DriveTools.Model
             {
                 EnhancedLogging.Log.Error(ex);
                 return false;
+            }
+        }
+
+        public async Task<byte[]> GetFileAsync(string id)
+        {
+            var file = Service.Files.Get(id).Execute();
+            return await GetFileAsync(file);
+        }
+
+        public async Task<byte[]> GetFileAsync(File file)
+        {
+            if (string.IsNullOrEmpty(file.DownloadUrl)) return null;
+            try
+            {
+                var fileBytes = await Service.HttpClient.GetByteArrayAsync(file.DownloadUrl);
+
+                return fileBytes;
+            }
+            catch (Exception ex)
+            {
+                EnhancedLogging.Log.Error(ex);
+                return null;
             }
         }
     }

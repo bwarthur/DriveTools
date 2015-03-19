@@ -55,7 +55,7 @@ namespace DriveToolsUnitTest.DriveToolsSql
 
             var client = new MongoClient("mongodb://localhost:27017");
             var server = client.GetServer();
-            var database = server.GetDatabase("Drive2");
+            var database = server.GetDatabase("Drive3");
 
             var collection = database.GetCollection<File>("files");
 

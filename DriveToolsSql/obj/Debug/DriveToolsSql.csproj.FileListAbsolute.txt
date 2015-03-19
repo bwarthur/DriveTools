@@ -43,3 +43,7 @@ C:\git\DriveTools\DriveToolsSql\obj\Debug\DriveToolsSql.csproj.App.config
 C:\git\DriveTools\DriveToolsSql\obj\Debug\DriveToolsSql.csprojResolveAssemblyReference.cache
 C:\git\DriveTools\DriveToolsSql\obj\Debug\DriveToolsSql.dll
 C:\git\DriveTools\DriveToolsSql\obj\Debug\DriveToolsSql.pdb
+C:\git\DriveTools\DriveToolsSql\bin\Debug\MongoDB.Bson.dll
+C:\git\DriveTools\DriveToolsSql\bin\Debug\MongoDB.Driver.dll
+C:\git\DriveTools\DriveToolsSql\bin\Debug\MongoDB.Bson.xml
+C:\git\DriveTools\DriveToolsSql\bin\Debug\MongoDB.Driver.xml
