@@ -35,13 +35,13 @@ namespace DriveToolsUnitTest.GoogleDrive
         }
 
         [TestMethod]
-        public void GetAllFilesTest()
+        public async void GetAllFilesTest()
         {
             var service = BuildService();
             var model = new GoogleDriveModel(service);
 
             //var files = model.GetAllFiles("not '0B3tlH3Zvt1QAdkpCUExsbDlicmc' in parents");
-            var files = model.GetAllFiles("modifiedDate > '2015-02-01' and '0B3tlH3Zvt1QAdkpCUExsbDlicmc' in parents");
+            var files = await model.GetAllFiles("modifiedDate > '2015-02-01' and '0B3tlH3Zvt1QAdkpCUExsbDlicmc' in parents");
 
             Console.WriteLine(@"Total File Size: " + files.Select(f => f.QuotaBytesUsed).Sum());
 
@@ -60,13 +60,13 @@ namespace DriveToolsUnitTest.GoogleDrive
         }
 
         [TestMethod]
-        public void GetAllTrashedFilesTest()
+        public async void GetAllTrashedFilesTest()
         {
             var service = BuildService();
             var model = new GoogleDriveModel(service);
 
             //var files = model.GetAllFiles("not '0B3tlH3Zvt1QAdkpCUExsbDlicmc' in parents");
-            var files = model.GetAllFiles("trashed=true");
+            var files = await model.GetAllFiles("trashed=true");
 
             Console.WriteLine(@"Total File Size: " + files.Select(f => f.QuotaBytesUsed).Sum());
 
@@ -98,12 +98,12 @@ namespace DriveToolsUnitTest.GoogleDrive
         }
 
         [TestMethod]
-        public void GetFileAsyncTest()
+        public async void GetFileAsyncTest()
         {
             var service = BuildService();
             var model = new GoogleDriveModel(service);
 
-            var files = model.GetAllFiles();
+            var files = await model.GetAllFiles();
             //files.ForEach(f =>
             //{
             //    var file = model.GetFileAsync(f).Result;

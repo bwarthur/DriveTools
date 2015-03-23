@@ -51,7 +51,7 @@ namespace DriveToolsUnitTest.DriveToolsSql
             var model = new GoogleDriveModel(service);
 
             //var files = model.GetAllFiles("not '0B3tlH3Zvt1QAdkpCUExsbDlicmc' in parents");
-            var files = model.GetAllFiles();
+            var files = model.GetAllFiles().Result;
 
             var client = new MongoClient("mongodb://localhost:27017");
             var server = client.GetServer();

@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FirstFloor.ModernUI">
+      <HintPath>..\packages\ModernUI.WPF.1.0.6\lib\net45\FirstFloor.ModernUI.dll</HintPath>
+    </Reference>
     <Reference Include="Google.Apis">
       <HintPath>..\packages\Google.Apis.1.9.0\lib\net40\Google.Apis.dll</HintPath>
     </Reference>
@@ -126,14 +129,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Async.cs" />
+    <Compile Include="Commands\ActionCommands.cs" />
+    <Compile Include="Events\EventHandlers.cs" />
     <Compile Include="Model\GoogleDriveModel.cs" />
     <Compile Include="Commands\OpenCommands.cs" />
     <Compile Include="EnhancedLogging.cs" />
+    <Compile Include="TextBoxStreamWriter.cs" />
+    <Compile Include="Utilities.cs" />
+    <Compile Include="ViewModels\AboutUserViewModel.cs" />
+    <Compile Include="ViewModels\RemoveDuplicateWindowViewModel.cs" />
+    <Compile Include="Views\AboutUserView.xaml.cs">
+      <DependentUpon>AboutUserView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DriveFileView.xaml.cs">
       <DependentUpon>DriveFileView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PagedGenericListViewControl.xaml.cs">
       <DependentUpon>PagedGenericListViewControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RemoveDuplicateWindow.xaml.cs">
+      <DependentUpon>RemoveDuplicateWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -147,11 +163,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AboutUserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DriveFileView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PagedGenericListViewControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RemoveDuplicateWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -184,9 +208,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\EnhancedLogging.xml" />
   </ItemGroup>

@@ -1,9 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
+using System.Windows;
+using DriveTools.Events;
+using Google.Apis.Auth.OAuth2.Responses;
 using Google.Apis.Drive.v2;
 using Google.Apis.Drive.v2.Data;
+using Google.Apis.Requests;
+using MongoDB.Driver;
 
 namespace DriveTools.Model
 {
@@ -53,7 +59,7 @@ namespace DriveTools.Model
             }
         }
 
-        public List<File> GetAllFiles(string query = null)
+        public async Task<List<File>> GetAllFiles(string query = null, int cap = 0)
         {
             var result = new List<File>();
             var request = Service.Files.List();
@@ -69,9 +75,16 @@ namespace DriveTools.Model
             {
                 try
                 {
-                    var files = request.Execute();
+                    var files = await request.ExecuteAsync();
 
                     result.AddRange(files.Items);
+
+                    EventHandlers.GetAllFilesStatusEventTrigger(this,
+                        new GetAllFilesStatusEventHandlerArgs {CurrentFileCount = result.Count});
+
+                    if (cap != 0 && result.Count >= cap)
+                        return result;
+
                     request.PageToken = files.NextPageToken;
                 }
                 catch (Exception ex)
@@ -89,6 +102,44 @@ namespace DriveTools.Model
             try
             {
                 var result = Service.Files.Delete(id).Execute();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                EnhancedLogging.Log.Error(ex);
+                return false;
+            }
+        }
+
+        public async Task<bool> DeleteFileAsync(string id)
+        {
+            try
+            {
+                var result = await Service.Files.Delete(id).ExecuteAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                EnhancedLogging.Log.Error(ex);
+                return false;
+            }
+        }
+
+        public async Task<bool> DeleteFileBatchAsync(List<string> id)
+        {
+            try
+            {
+                var request = new BatchRequest(Service);
+                id.ForEach(
+                    v =>
+                        request.Queue(Service.Files.Delete(v),
+                            (TokenResponse content, RequestError error, int i, HttpResponseMessage message) =>
+                            {
+                                // Put your callback code here.
+                            }));
+
+                await request.ExecuteAsync();
+
                 return true;
             }
             catch (Exception ex)
